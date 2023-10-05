@@ -1,5 +1,7 @@
 package oit.is.z2236.kaizi.janken.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,8 @@ public class JankenController {
     String msg2;
     String msg3 = "";
 
+    ArrayList<String> msglist = new ArrayList<>();
+
     msg1 = "あなたの手 " + param1;
     msg2 = "相手の手 Gu";
 
@@ -40,9 +44,10 @@ public class JankenController {
       msg3 = "結果 You lose";
     }
 
-    model.addAttribute("msg1", msg1);
-    model.addAttribute("msg2", msg2);
-    model.addAttribute("msg3", msg3);
+    msglist.add(msg1);
+    msglist.add(msg2);
+    msglist.add(msg3);
+    model.addAttribute("msglist", msglist);
 
     return "janken.html";
   }
