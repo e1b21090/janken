@@ -10,8 +10,8 @@
   <div><a href="/logout">ログアウト</a></div>
   <h1>Janken GAME!</h1>
 
-  <p>エントリー</p>
   <div th:if="${room}">
+    <p>エントリー</p>
     <ul>
       <li th:each="user:${room.users}">[[${user}]]</li>
     </ul>
