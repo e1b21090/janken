@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// import oit.is.z2236.kaizi.janken.model.Janken;
+import oit.is.z2236.kaizi.janken.model.Janken;
 import oit.is.z2236.kaizi.janken.model.Entry;
 
 @Controller
@@ -40,28 +40,31 @@ public class JankenController {
     return "janken.html";
   }
 
-  @GetMapping("/janken2/{param1}")
+  @GetMapping("/janken/{param1}")
   public String janken2(@PathVariable String param1, ModelMap model) {
-    String msg1;
-    String msg2;
-    String msg3 = "";
+    // String msg1;
+    // String msg2;
+    // String msg3 = "";
 
     ArrayList<String> msglist = new ArrayList<>();
+    Janken game = new Janken();
 
-    msg1 = "あなたの手 " + param1;
-    msg2 = "相手の手 Gu";
+    msglist = game.Game(param1);
 
-    if (param1.equals("Gu")) {
-      msg3 = "結果 Draw";
-    } else if (param1.equals("Pa")) {
-      msg3 = "結果 You Win!";
-    } else if (param1.equals("Cyoki")) {
-      msg3 = "結果 You lose";
-    }
+    // msg1 = "あなたの手 " + param1;
+    // msg2 = "相手の手 Gu";
 
-    msglist.add(msg1);
-    msglist.add(msg2);
-    msglist.add(msg3);
+    // if (param1.equals("Gu")) {
+    // msg3 = "結果 Draw";
+    // } else if (param1.equals("Pa")) {
+    // msg3 = "結果 You Win!";
+    // } else if (param1.equals("Cyoki")) {
+    // msg3 = "結果 You lose";
+    // }
+
+    // msglist.add(msg1);
+    // msglist.add(msg2);
+    // msglist.add(msg3);
     model.addAttribute("msglist", msglist);
 
     return "janken.html";
