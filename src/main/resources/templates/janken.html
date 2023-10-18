@@ -10,11 +10,11 @@
   <div><a href="/logout">ログアウト</a></div>
   <h1>Janken GAME!</h1>
 
-  <p>Hi <span sec:authentication="name"></p>
+  <p>Hi <span sec:authentication="name"></span></p>
   <!-- <div th:if="${users}"> -->
   <h2>エントリー</h2>
   <ul>
-    <li th:each="user:${users}">[[${user.userName}]]</li>
+    <li th:each="user : ${users}"><a th:href="@{/match(id=${user.id})}"> [[${user.userName}]]</a></li>
   </ul>
   </div>
 
