@@ -12,16 +12,27 @@
 
   <p>Hi <span sec:authentication="name"></p>
   <!-- <div th:if="${users}"> -->
-  <p>エントリー</p>
+  <h2>エントリー</h2>
   <ul>
     <li th:each="user:${users}">[[${user.userName}]]</li>
   </ul>
   </div>
 
+  <h2>試合結果</h2>
+  <div th:each="match:${matches}">
+    <tr>
+      <td>id:[[${match.id}]]</td>
+      <td>user1:[[${match.user1}]]</td>
+      <td>user2:[[${match.user2}]]</td>
+      <td>user1Hand:[[${match.user1Hand}]]</td>
+      <td>user2Hand:[[${match.user2Hand}]]</td>
+    </tr>
+  </div>
+
   <!-- <div th:if="${login_user}">Hi [[${login_user}]]</div> -->
-  <a href="/janken/Gu">ぐー</a>
+  <!-- <a href="/janken/Gu">ぐー</a>
   <a href="/janken/Cyoki">ちょき</a>
-  <a href="/janken/Pa">ぱー</a>
+  <a href="/janken/Pa">ぱー</a> -->
 
   <!-- <div>
     <span th:each="msg:${msglist}">

@@ -16,12 +16,16 @@ import oit.is.z2236.kaizi.janken.model.Janken;
 //import oit.is.z2236.kaizi.janken.model.Entry;
 import oit.is.z2236.kaizi.janken.model.User;
 import oit.is.z2236.kaizi.janken.model.UserMapper;
+import oit.is.z2236.kaizi.janken.model.Match;
+import oit.is.z2236.kaizi.janken.model.MatchMapper;
 
 @Controller
 public class JankenController {
 
   @Autowired
   UserMapper userMapper;
+  @Autowired
+  MatchMapper matchMapper;
 
   // @Autowired
   // private Entry room;
@@ -61,40 +65,49 @@ public class JankenController {
   // }
 
   @GetMapping("/janken")
-  public String sample42(ModelMap model) {
+  public String entryUser(ModelMap model) {
     ArrayList<User> users = userMapper.selectAllUsers();
+    ArrayList<Match> matches = matchMapper.selectAllMatches();
+    model.addAttribute("matches", matches);
     model.addAttribute("users", users);
     return "janken.html";
   }
 
-  @GetMapping("/janken/{param1}")
-  public String janken2(@PathVariable String param1, ModelMap model) {
-    // String msg1;
-    // String msg2;
-    // String msg3 = "";
+  // @GetMapping("/janken")
+  // public String gameResult(ModelMap model) {
+  // ArrayList<Match> matches = matchMapper.selectAllMatches();
+  // model.addAttribute("matches", matches);
+  // return "janken.html";
+  // }
 
-    ArrayList<String> msglist = new ArrayList<>();
-    Janken game = new Janken();
+  // @GetMapping("/janken/{param1}")
+  // public String janken2(@PathVariable String param1, ModelMap model) {
+  // // String msg1;
+  // // String msg2;
+  // // String msg3 = "";
 
-    msglist = game.Game(param1);
+  // ArrayList<String> msglist = new ArrayList<>();
+  // Janken game = new Janken();
 
-    // msg1 = "あなたの手 " + param1;
-    // msg2 = "相手の手 Gu";
+  // msglist = game.Game(param1);
 
-    // if (param1.equals("Gu")) {
-    // msg3 = "結果 Draw";
-    // } else if (param1.equals("Pa")) {
-    // msg3 = "結果 You Win!";
-    // } else if (param1.equals("Cyoki")) {
-    // msg3 = "結果 You lose";
-    // }
+  // // msg1 = "あなたの手 " + param1;
+  // // msg2 = "相手の手 Gu";
 
-    // msglist.add(msg1);
-    // msglist.add(msg2);
-    // msglist.add(msg3);
-    model.addAttribute("msglist", msglist);
+  // // if (param1.equals("Gu")) {
+  // // msg3 = "結果 Draw";
+  // // } else if (param1.equals("Pa")) {
+  // // msg3 = "結果 You Win!";
+  // // } else if (param1.equals("Cyoki")) {
+  // // msg3 = "結果 You lose";
+  // // }
 
-    return "janken.html";
-  }
+  // // msglist.add(msg1);
+  // // msglist.add(msg2);
+  // // msglist.add(msg3);
+  // model.addAttribute("msglist", msglist);
+
+  // return "janken.html";
+  // }
 
 }
