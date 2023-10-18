@@ -10,23 +10,24 @@
   <div><a href="/logout">ログアウト</a></div>
   <h1>Janken GAME!</h1>
 
-  <div th:if="${room}">
-    <p>エントリー</p>
-    <ul>
-      <li th:each="user:${room.users}">[[${user}]]</li>
-    </ul>
+  <p>Hi <span sec:authentication="name"></p>
+  <!-- <div th:if="${users}"> -->
+  <p>エントリー</p>
+  <ul>
+    <li th:each="user:${users}">[[${user.userName}]]</li>
+  </ul>
   </div>
 
-  <div th:if="${login_user}">Hi [[${login_user}]]</div>
+  <!-- <div th:if="${login_user}">Hi [[${login_user}]]</div> -->
   <a href="/janken/Gu">ぐー</a>
   <a href="/janken/Cyoki">ちょき</a>
   <a href="/janken/Pa">ぱー</a>
 
-  <div>
+  <!-- <div>
     <span th:each="msg:${msglist}">
       [[${msg}]]<br>
     </span>
-  </div>
+  </div> -->
 </body>
 
 </html>
