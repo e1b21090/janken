@@ -12,4 +12,5 @@ public interface MatchMapper {
 
   @Select("SELECT * from matches;")
   ArrayList<Match> selectAllMatches();
+
 }

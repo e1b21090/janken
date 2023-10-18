@@ -73,12 +73,12 @@ public class JankenController {
     return "janken.html";
   }
 
-  // @GetMapping("/janken")
-  // public String gameResult(ModelMap model) {
-  // ArrayList<Match> matches = matchMapper.selectAllMatches();
-  // model.addAttribute("matches", matches);
-  // return "janken.html";
-  // }
+  @GetMapping("/match")
+  public String sample23(@RequestParam Integer id, ModelMap model) {
+    User match = userMapper.selectAllById(id);
+    model.addAttribute("match", match);
+    return "match.html";
+  }
 
   // @GetMapping("/janken/{param1}")
   // public String janken2(@PathVariable String param1, ModelMap model) {
