@@ -10,6 +10,15 @@
   <div><a href="/logout">ログアウト</a></div>
   <h1>Match</h1>
   <h2><span sec:authentication="name"></span>&ensp;V.S.&ensp;[[${match.userName}]]</h2>
+  <a th:href="@{/fight?hand=1(id=${match.id})}">ぐー</a>
+  <a th:href="@{/fight?hand=2(id=${match.id})}">ちょき</a>
+  <a th:href="@{/fight?hand=3(id=${match.id})}">ぱー</a>
+  <div>
+    <span th:each="msg:${msglist}">
+      [[${msg}]]<br>
+    </span>
+  </div>
+  <a href="/janken">もどる</a>
 </body>
 
 </html>
