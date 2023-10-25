@@ -20,6 +20,8 @@ import oit.is.z2236.kaizi.janken.model.User;
 import oit.is.z2236.kaizi.janken.model.UserMapper;
 import oit.is.z2236.kaizi.janken.model.Match;
 import oit.is.z2236.kaizi.janken.model.MatchMapper;
+import oit.is.z2236.kaizi.janken.model.MatchInfo;
+import oit.is.z2236.kaizi.janken.model.MatchInfoMapper;
 
 @Controller
 public class JankenController {
@@ -28,6 +30,8 @@ public class JankenController {
   UserMapper userMapper;
   @Autowired
   MatchMapper matchMapper;
+  @Autowired
+  MatchInfoMapper matchInfoMapper;
 
   // @Autowired
   // private Entry room;
@@ -75,44 +79,26 @@ public class JankenController {
   public String sample43(@RequestParam Integer hand, @RequestParam Integer id, ModelMap model, Principal prin) {
     String loginUser = prin.getName(); // ログインユーザ情報
     User user = userMapper.selectByUserName(loginUser);
-    Match matches = new Match();
-    matches.setUser1(user.getId());
-    matches.setUser2(id);
-    matches.setUser2Hand("Gu");
-
-    ArrayList<String> msglist = new ArrayList<>();
-    String msg1 = "";
-    String msg2 = "相手の手 Gu";
-    String msg3 = "";
+    MatchInfo matchInfo = new MatchInfo();
+    matchInfo.setUser1(user.getId());
+    matchInfo.setUser2(id);
+    matchInfo.setIsActive(true);
 
     if (hand == 1) {
-      matches.setUser1Hand("Gu");
-      msg1 = "あなたの手 Gu";
-      msg3 = "結果 Draw";
+      matchInfo.setUser1Hand("Gu");
     } else if (hand == 2) {
-      matches.setUser1Hand("Choki");
-      msg1 = "あなたの手 Choki";
-      msg3 = "結果 You lose";
+      matchInfo.setUser1Hand("Choki");
     } else if (hand == 3) {
-      matches.setUser1Hand("Pa");
-      msg1 = "あなたの手 Pa";
-      msg3 = "結果 You Win!";
+      matchInfo.setUser1Hand("Pa");
     }
 
-    msglist.add(msg1);
-    msglist.add(msg2);
-    msglist.add(msg3);
-    model.addAttribute("msglist", msglist);
-
-    User match = userMapper.selectAllById(id);
-    model.addAttribute("match", match);
-    matchMapper.insertMatch(matches);
+    matchInfoMapper.insertMatchInfo(matchInfo);
 
     // users.setUserName(loginUser);
     // userMapper.insertUser(users);
     // model.addAttribute("users", users);
     // System.out.println("ID:" + chamber3.getId());
-    return "match.html";
+    return "wait.html";
   }
 
   // @GetMapping("/janken/{param1}")
