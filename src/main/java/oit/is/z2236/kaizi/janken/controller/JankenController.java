@@ -64,6 +64,9 @@ public class JankenController {
     ArrayList<Match> matches = matchMapper.selectAllMatches();
     model.addAttribute("matches", matches);
     model.addAttribute("users", users);
+
+    ArrayList<MatchInfo> matchinfo = matchInfoMapper.selectAllByIsActive();
+    model.addAttribute("matchinfo", matchinfo);
     return "janken.html";
   }
 
@@ -99,7 +102,7 @@ public class JankenController {
     // model.addAttribute("users", users);
     // System.out.println("ID:" + chamber3.getId());
     return "wait.html";
-  }
+    }
 
   // @GetMapping("/janken/{param1}")
   // public String janken2(@PathVariable String param1, ModelMap model) {
